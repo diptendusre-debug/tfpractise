@@ -19,7 +19,10 @@ provider "aws" {
   # Configuration options
   region = "us-east-1"
 }
-
+variable "environment"{
+  default = "dev"
+  type = string
+}
 resource "aws_vpc" "myvpc" {
   cidr_block       = "10.0.0.0/16"
   instance_tenancy = "default"
@@ -33,7 +36,12 @@ resource "aws_s3_bucket" "example" {
   bucket = "diptendu-practice-bucket-12345"
 
   tags = {
-    Name        = "My bucket"
-    Environment = "Dev"
+    Name        = "${var.environment}-bucket"
+    Environment = var.environment
   }
+}
+
+output "vpcname" {
+  value = aws_vpc.myvpc.id
+  
 }
