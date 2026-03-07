@@ -49,3 +49,9 @@ variable "aws_machine_name" {
   type        = string
   default     = "diptendu"
 }
+
+variable "security_group_cidr"{
+    description="cidr blocks for the security group"
+    type=list(string)
+    default = [ "10.0.0.0/24","192.168.0.0/24" ]
+}
