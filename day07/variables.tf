@@ -19,10 +19,11 @@ variable "subnet_name" {
   type        = string
   default     = "diptendu-vpc-subnet"
 }
+##### This is for Set type
 variable "zone" {
   description = "The availability Zone"
-  type        = string
-  default     = "us-east-1a"
+  type        = set(string)
+  default     = ["us-east-1a", "us-east-1b"]
 }
 variable "ami_id" {
   description = "AWS ami id based on the region"
@@ -50,6 +51,7 @@ variable "aws_machine_name" {
   default     = "diptendu"
 }
 
+### This is for List Type
 variable "security_group_cidr"{
     description="cidr blocks for the security group"
     type=list(string)

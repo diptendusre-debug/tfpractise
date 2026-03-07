@@ -9,7 +9,8 @@ resource "aws_vpc" "example" {
 resource "aws_subnet" "example" {
   vpc_id            = aws_vpc.example.id
   cidr_block        = var.subnet_cidr_block
-  availability_zone = var.zone
+  availability_zone = tolist(var.zone)[0]
+#####using set here 
 
   tags = {
     Name = var.subnet_name
@@ -49,7 +50,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_tls_ipv4" {
   ip_protocol       = "tcp"
   to_port           = 443
 }
-
+### using list here 
 resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv4" {
   security_group_id = aws_security_group.allow_tls.id
   cidr_ipv4         = var.security_group_cidr[1]
