@@ -15,14 +15,14 @@ variable "aws_region" {
 variable "environment_name" {
   description = "Environment name used in resource names and tags"
   type        = string
-  default     = "dev"
+  default     = "PwC"
 }
 
 # Business unit or department (used in tags and naming)
 variable "business_division" {
   description = "Business Division in the large organization this infrastructure belongs to"
   type        = string
-  default     = "retail"
+  default     = "Sre"
 }
 
 # --------------------------------------------------------
