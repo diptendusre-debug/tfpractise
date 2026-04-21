@@ -30,18 +30,18 @@ resource "aws_eks_node_group" "private_nodes" {
   # Configure auto-scaling limits and defaults
   scaling_config {
     # Desired number of nodes when the node group is created
-    desired_size = 3
+    desired_size = 2
 
     # Minimum number of nodes allowed
     min_size = 1
 
     # Maximum number of nodes the group can scale to
-    max_size = 6
+    max_size = 3
   }
 
   # Set the max percentage of nodes that can be unavailable during update
   update_config {
-    max_unavailable_percentage = 33
+    max_unavailable_percentage = 50
   }
 
   # Force node group update when EKS AMI version changes
@@ -66,6 +66,7 @@ resource "aws_eks_node_group" "private_nodes" {
   depends_on = [
     aws_iam_role_policy_attachment.eks_worker_node_policy,
     aws_iam_role_policy_attachment.eks_cni_policy,
-    aws_iam_role_policy_attachment.eks_ecr_policy
+    aws_iam_role_policy_attachment.eks_ecr_policy,
+    aws_iam_role_policy_attachment.cloudwatch_agent_policy
   ]
 }
