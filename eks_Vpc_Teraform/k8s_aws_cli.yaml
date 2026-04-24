@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: aws-cli
+spec:
+  serviceAccountName: aws-cli-sa
+  containers:
+  - name: aws-cli
+    image: amazon/aws-cli:latest
+    command: ["sleep", "3600"]
